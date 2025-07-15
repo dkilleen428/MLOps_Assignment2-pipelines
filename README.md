@@ -3,39 +3,44 @@
 **Author:** dkilleen428  
 **Platform:** Databricks (Azure)  
 
+## Assignment Instructions
 
-## Objective
+This project is to design a Feature Store with an ML Pipeline using the `athletes.csv` dataset.
 
-To build and evaluate a machine learning pipeline using two versions of engineered features with a feature store-like approach, tracking both performance and carbon emissions.
+**Requirements:**
+
+- Load and explore the data
+- Setup an ML pipeline in any MLOps platform of your choice (Databricks used here)
+- Use a feature store with the ML Pipeline
+- Create two different versions of features
+- Train the same algorithm on both versions (without AutoML)
+- Use two different sets of hyperparameters (4 total experiments)
+- Compare experiments:
+  - Quantitatively (model metrics)
+  - Qualitatively (plots)
+  - Carbon emissions for each run
+
+##  Pipeline Overview
+
+- **Data:** `athletes.csv` (personal details and performance metrics)
+- **Features:**
+  - **Version 1:** `height`, `weight`, `age`
+  - **Version 2:** `height`, `weight`, `age`, and calculated `BMI`
+- **Model:** `RandomForestClassifier`
+- **Hyperparameters tested:** `n_estimators = 100`, `200`
+- **Total Experiments:** 4
+
+Each run was tracked for performance and carbon emissions, using Databricks MLflow and experiment logging tools.
+
+## ChatGPT Use
+
+This project was completed on Azure Databricks with support from:
+- **ChatGPT** for troubleshooting feature store issues, cluster setup, GitHub integration, and workflow structuring.
 
 
-## Experiments
+## Files
 
-Created two feature sets:
-
-- **Feature Set V1:** `height`, `weight`, `age`
-- **Feature Set V2:** `height`, `weight`, `age`, and calculated `BMI`
-
-A simulated binary label was added for classification experiments.
-
-
-## Pipeline Details
-
-- **Algorithm:** RandomForestClassifier (no AutoML)
-- **Hyperparameters tested:** `n_estimators = 100` and `200`
-- **4 total runs:**
-  - V1 + 100 estimators
-  - V1 + 200 estimators
-  - V2 + 100 estimators
-  - V2 + 200 estimators
-
-
-## Results
-
-| Feature Version | n_estimators | Accuracy | CO₂ Emissions (kg) |
-|-----------------|--------------|----------|---------------------|
-| v1              | 100          | 0.5028   | 0.000679            |
-| v1              | 200          | 0.5028   | 0.000005            |
-| v2              | 100          | 0.4966   | 0.000666            |
-| v2              | 200          | 0.4998   | 0.001136            |
+- `Assignment2.ipynb`: Contains full pipeline code, experiments, and logging
+- `README.md`: Overview of the project and assignment requirements
+- `athletes.csv`: Data used for the project
 
